@@ -29,7 +29,7 @@ execute "make-redis" do
   creates "redis"
   user node['redis']['user']
   action :nothing
-  notifies :run, "execute[install-redis']", :immediately
+  notifies :run, "execute[install-redis]", :immediately
 end
 
 execute "redis-extract-source" do
@@ -37,12 +37,12 @@ execute "redis-extract-source" do
   creates "#{node['redis']['src_dir']}/COPYING"
   only_if do File.exist?("#{Chef::Config['file_cache_path']}/#{redis_source_tarball}") end
   action :run
-  notifies :run, "execute[make-redis']", :immediately
+  notifies :run, "execute[make-redis]", :immediately
 end
 
 remote_file "#{Chef::Config['file_cache_path']}/#{redis_source_tarball}" do
   source redis_source_url
   mode 0644
   checksum node['redis']['source']['sha']
-  notifies :run, "execute[redis-extract-source']", :immediately
+  notifies :run, "execute[redis-extract-source]", :immediately
 end
