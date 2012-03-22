@@ -8,7 +8,7 @@ EXEC=<%= node['redis']['dst_dir'] %>/bin/redis-server
 CLIEXEC=<%= node['redis']['dst_dir'] %>/bin/redis-cli
 
 PIDFILE=<%= node['redis']['config']['pidfile'] %>
-CONF="<%= node['redis']['dst_dir'] %>/redis.conf"
+CONF="<%= node['redis']['conf_dir'] %>/redis.conf"
 
 case "$1" in
     start)
