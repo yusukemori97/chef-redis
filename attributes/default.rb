@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+default['redis']['user'] = "redis"
+default['redis']['group'] = "redis"
 default['redis']['config']['listen_addr'] = "127.0.0.1"
 default['redis']['config']['listen_port'] = "6379"
 default['redis']['config']['appendonly'] = "no"
