@@ -2,6 +2,6 @@
 # Cookbook Name:: redis
 # Recipe:: _server_service
 
-service "redis" do
+service "redis-server" do
   action [ :enable, :start ]
 end
