@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 
+default['redis']['install_type'] = "package"
 default['redis']['user'] = "redis"
 default['redis']['group'] = "redis"
 default['redis']['config']['appendonly'] = "no"
