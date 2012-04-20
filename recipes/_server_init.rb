@@ -10,6 +10,4 @@ template "redis_init" do
   mode 0755
 end
 
-service "redis" do
-  action [ :enable, :start ]
-end
+include_recipe "redis::_server_service"
