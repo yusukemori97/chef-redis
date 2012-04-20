@@ -3,7 +3,7 @@
 # Recipe:: _server_init
 
 template "redis_init" do
-  path "/etc/init.d/redis"
+  path "/etc/init.d/redis-server"
   source "redis_init.erb"
   owner "root"
   group "root"
