@@ -8,9 +8,9 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,6 +34,9 @@ default['redis']['config']['loglevel'] = "warning"
 default['redis']['config']['pidfile'] = "/var/run/redis.pid"
 default['redis']['config']['rdbcompression'] = "yes"
 default['redis']['config']['timeout'] = "300"
+default['redis']['config']['slowlog'] = false
+default['redis']['config']['slowlog_log_slower_than'] = "10000"
+default['redis']['config']['slowlog_max_len'] = "1024"
 default['redis']['config']['vm']['enabled'] = "no"
 default['redis']['config']['vm']['max_memory'] = "0"
 default['redis']['config']['vm']['max_threads'] = "4"
