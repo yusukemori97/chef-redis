@@ -281,11 +281,11 @@ no-appendfsync-on-rewrite no
 # The following time is expressed in microseconds, so 1000000 is equivalent
 # to one second. Note that a negative number disables the slow log, while
 # a value of zero forces the logging of every command.
-<%= "# " unless @slowlog -%>slowlog-log-slower-than <%= @slowlog_log_slower_than %>
+<%= "# " unless @configure_slowlog -%>slowlog-log-slower-than <%= @slowlog_log_slower_than %>
 
 # There is no limit to this length. Just be aware that it will consume memory.
 # You can reclaim memory used by the slow log with SLOWLOG RESET.
-<%= "# " unless @slowlog -%>slowlog-max-len <%= @slowlog_max_len %>
+<%= "# " unless @configure_slowlog -%>slowlog-max-len <%= @slowlog_max_len %>
 
 ################################ VIRTUAL MEMORY ###############################
 
