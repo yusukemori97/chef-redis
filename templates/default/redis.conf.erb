@@ -166,14 +166,14 @@ dir <%= @dir %>
 
 # MAXMEMORY POLICY: how Redis will select what to remove when maxmemory
 # is reached? You can select among five behavior:
- 
+
 # volatile-lru -> remove the key with an expire set using an LRU algorithm
 # allkeys-lru -> remove any key accordingly to the LRU algorithm
 # volatile-random -> remove a random key with an expire set
 # allkeys->random -> remove a random key, any key
 # volatile-ttl -> remove the key with the nearest expire time (minor TTL)
 # noeviction -> don't expire at all, just return an error on write operations
-# 
+#
 # Note: with all the kind of policies, Redis will return an error on write
 #       operations, when there are not suitable keys for eviction.
 #
@@ -258,7 +258,7 @@ appendfsync <%= @appendfsync %>
 # the same as "appendfsync none", that in pratical terms means that it is
 # possible to lost up to 30 seconds of log in the worst scenario (with the
 # default Linux settings).
-# 
+#
 # If you have latency problems turn this to "yes". Otherwise leave it as
 # "no" that is the safest pick from the point of view of durability.
 no-appendfsync-on-rewrite no
@@ -271,7 +271,7 @@ no-appendfsync-on-rewrite no
 # but just the time needed to actually execute the command (this is the only
 # stage of command execution where the thread is blocked and can not serve
 # other requests in the meantime).
-# 
+#
 # You can configure the slow log with two parameters: one tells Redis
 # what is the execution time, in microseconds, to exceed in order for the
 # command to get logged, and the other parameter is the length of the
@@ -281,11 +281,11 @@ no-appendfsync-on-rewrite no
 # The following time is expressed in microseconds, so 1000000 is equivalent
 # to one second. Note that a negative number disables the slow log, while
 # a value of zero forces the logging of every command.
-slowlog-log-slower-than 10000
+<%= "# " unless @configure_slowlog -%>slowlog-log-slower-than <%= @slowlog_log_slower_than %>
 
 # There is no limit to this length. Just be aware that it will consume memory.
 # You can reclaim memory used by the slow log with SLOWLOG RESET.
-slowlog-max-len 1024
+<%= "# " unless @configure_slowlog -%>slowlog-max-len <%= @slowlog_max_len %>
 
 ################################ VIRTUAL MEMORY ###############################
 
