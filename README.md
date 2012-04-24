@@ -71,12 +71,6 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 * `redis::server_package` - Uses the recipe crumbs in the Redis cookbook to manage a packaged Redis instance.
 * `redis::server_source` - Uses the recipe crumbs in the Redis cookbook to manage a source compiled Redis instance.
 
-The recipe redis::server will install and configure a Redis server.
-The recipe redis::server_package will install and configure a Redis server.
-The recipe redis::default will install and configure a Redis server.
-
-The recipe redis::server_source will install and configure a Redis server.
-
 # CONTRIBUTE:
 
 # LICENSE & AUTHOR:
