@@ -11,8 +11,8 @@ The Redis cookbook has been tested on Ubuntu and Centos.
 
 ## Cookbooks:
 
-* [build-essential](https://github.com/opscode-cookbooks/build-essential)
-* [runit](https://github.com/opscode-cookbooks/runit)
+* [build-essential](https://github.com/opscode-cookbooks/build-essential) - Used when compiling Redis.
+* [runit](https://github.com/opscode-cookbooks/runit) - Used only if Redis is configured to start with Runit.
 
 # ATTRIBUTES:
 
@@ -52,7 +52,7 @@ The config file template should support all current configuration options. If we
 
 ** The following configuration settings may only work with a recent Redis release. **
 
-* `['redis']['config']['configure_slowlog']` - 
+* `['redis']['config']['configure_slowlog']` - Adds or Removes slowlog options from your redis.conf [ true, nil ]
 * `['redis']['config']['slowlog_log_slower_than']` - Time in microseconds a command must run beyond to be caught by the slow logger.
 * `['redis']['config']['slowlog_max_len']` - The length of the slow log.
 
