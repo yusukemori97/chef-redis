@@ -58,18 +58,18 @@ The following configuration settings may only work with a recent redis release.
 
 There are several recipes broken up into reusable pieces. For ease of use, we've also included wrappers that map the most common use.
 
-* `redis::_group` - "Creates a group for Redis."
-* `redis::_server_config` - "Creates configuration directories and installs templatized redis.conf."
-* `redis::_server_init` - "Installs a templatized redis sysv initscript."
-* `redis::_server_install_from_package` - "Installs Redis through the chef package resource."
-* `redis::_server_install_from_package` - "Downloads, compiles, and installs Redis from source."
-* `redis::_server_runit` - "Installs templatized redis runit configuration."
-* `redis::_server_service` - "Configures Redis through the chef service resource."
-* `redis::_user` - "Creates a user for Redis."
-* `redis::default` - "The default recipe executes the redis::server_package recipe."
-* `redis::server` - "The default recipe executes the redis::server_package recipe. This recipe is here for compatibility with other community Redis cookbooks."
-* `redis::server_package` - "Uses the recipe crumbs in the Redis cookbook to manage a packaged Redis instance."
-* `redis::server_source` - "Uses the recipe crumbs in the Redis cookbook to manage a source compiled Redis instance."
+* `redis::_group` - Creates a group for Redis.
+* `redis::_server_config` - Creates configuration directories and installs templatized redis.conf.
+* `redis::_server_init` - Installs a templatized redis sysv initscript.
+* `redis::_server_install_from_package` - Installs Redis through the chef package resource.
+* `redis::_server_install_from_package` - Downloads, compiles, and installs Redis from source.
+* `redis::_server_runit` - Installs templatized redis runit configuration.
+* `redis::_server_service` - Configures Redis through the chef service resource.
+* `redis::_user` - Creates a user for Redis.
+* `redis::default` - The default recipe executes the redis::server_package recipe.
+* `redis::server` - The default recipe executes the redis::server_package recipe. This recipe is here for compatibility with other community Redis cookbooks.
+* `redis::server_package` - Uses the recipe crumbs in the Redis cookbook to manage a packaged Redis instance.
+* `redis::server_source` - Uses the recipe crumbs in the Redis cookbook to manage a source compiled Redis instance.
 
 The recipe redis::server will install and configure a Redis server.
 The recipe redis::server_package will install and configure a Redis server.
