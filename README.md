@@ -8,7 +8,6 @@ This cookbook has only been tested on Ubuntu 10.04 and 11.04.
 
 ## Cookbooks:
 
-* [chef-ark](https://github.com/bryanwb/chef-ark)
 * [build-essential](https://github.com/opscode-cookbooks/build-essential)
 * [runit](https://github.com/opscode-cookbooks/runit)
 
