@@ -1,10 +1,13 @@
 # DESCRIPTION:
 
-Install and configure [Redis](http://redis.io/).
+Installs and configures [Redis](http://redis.io/).
+
+** NOTE **
+This cookbook does not currently configure or manage Redis replication.
 
 # REQUIREMENTS:
 
-This cookbook has only been tested on Ubuntu 10.04 and 11.04.
+The Redis cookbook has been tested on Ubuntu and Centos.
 
 ## Cookbooks:
 
@@ -28,30 +31,30 @@ This cookbook has only been tested on Ubuntu 10.04 and 11.04.
 The config file template should support all current configuration options. If we've missed something please file a ticket.
 
 * `['redis']['config']['appendonly']` - Use the AOF file writing system.
-* `['redis']['config']['appendfsync']` -
-* `['redis']['config']['daemonize']` -
-* `['redis']['config']['databases']` -
-* `['redis']['config']['dbfilename']` -
-* `['redis']['config']['dir']` -
+* `['redis']['config']['appendfsync']` - The mode Redis uses for fsync() calls. [ everysec, no, always ]
+* `['redis']['config']['daemonize']` - Run Redis as a daemon. In this mode Redis _will_ create a pid file.
+* `['redis']['config']['databases']` - Set the number of Redis databases.
+* `['redis']['config']['dbfilename']` - The filename where the database is dumped.
+* `['redis']['config']['dir']` - The directory where Redis will store its DB and AOF files.
 * `['redis']['config']['listen_addr']` - Address to listen on. Defaults to localhost.
 * `['redis']['config']['listen_port']` - Port to listen on.
-* `['redis']['config']['logfile']` -
-* `['redis']['config']['loglevel']` -
-* `['redis']['config']['pidfile']` -
-* `['redis']['config']['rdbcompression']` -
-* `['redis']['config']['timeout']` -
+* `['redis']['config']['logfile']` - The Redis logfile.
+* `['redis']['config']['loglevel']` - Changes logging verbosity. [debug, verbose, notice, warning ]
+* `['redis']['config']['pidfile']` - When daemonize is enabled this configures where Redis will write the pid file.
+* `['redis']['config']['rdbcompression']` - Whether or not to use LZF compression when dumping .rdb databases. [ yes, no ]
+* `['redis']['config']['timeout']` - Configures when Redis will timeout a idle client connection.
 * `['redis']['config']['vm']['enabled']`- Use Redis' virtual memory.
-* `['redis']['config']['vm']['max_memory']` -
-* `['redis']['config']['vm']['max_threads']` -
-* `['redis']['config']['vm']['page_size']` -
-* `['redis']['config']['vm']['pages']` -
-* `['redis']['config']['vm']['vm_swap_file']` -
+* `['redis']['config']['vm']['max_memory']` - Limits the amount of memory available to Redis.
+* `['redis']['config']['vm']['max_threads']` - Maximum number of VM I/O threads running simultaneously.
+* `['redis']['config']['vm']['page_size']` - Configures the page size Redis uses when writing out swap files.
+* `['redis']['config']['vm']['pages']` - The total number of memory pages in a swap file.
+* `['redis']['config']['vm']['vm_swap_file']` - The Redis swapfile.
 
-The following configuration settings may only work with a recent Redis release.
+** The following configuration settings may only work with a recent Redis release. **
 
 * `['redis']['config']['configure_slowlog']` - 
-* `['redis']['config']['slowlog_log_slower_than']` - 
-* `['redis']['config']['slowlog_max_len']` - 
+* `['redis']['config']['slowlog_log_slower_than']` - Time in microseconds a command must run beyond to be caught by the slow logger.
+* `['redis']['config']['slowlog_max_len']` - The length of the slow log.
 
 # USAGE:
 
@@ -71,6 +74,8 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 * `redis::server_source` - Uses the recipe crumbs in the Redis cookbook to manage a source compiled Redis instance.
 
 # CONTRIBUTE:
+
+Please feel free to add issues, and submit pull requests to our [github](https://github.com/CXInc/chef-redis)!
 
 # LICENSE & AUTHOR:
 Author:: Miah Johnson (<miah@cx.com>)
