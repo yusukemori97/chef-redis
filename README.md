@@ -7,7 +7,7 @@ This cookbook does not currently configure or manage Redis replication.
 
 # REQUIREMENTS:
 
-The Redis cookbook has been tested on Ubuntu and Centos.
+The Redis cookbook has been tested on Ubuntu 10.04, 11.04, 11.10, and CentOS 5 and 6.
 
 ## Cookbooks:
 
