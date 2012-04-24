@@ -17,7 +17,7 @@ The Redis cookbook has been tested on Ubuntu 10.04, 11.04, 11.10, and CentOS 5 a
 # ATTRIBUTES:
 
 ## Installation:
-* `['redis']['install_type']` - Install the Package by default.
+* `['redis']['install_type']` - Install the Package by default. [ package, source ]
 * `['redis']['source']['sha']` - The sha256 checksum of the source tarball.
 * `['redis']['source']['url']` - The url to the source tarball.
 * `['redis']['source']['version']` - The version of Redis to install.
