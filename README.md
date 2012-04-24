@@ -50,7 +50,7 @@ The config file template should support all current configuration options. If we
 * `['redis']['config']['vm']['pages']` - The total number of memory pages in a swap file.
 * `['redis']['config']['vm']['vm_swap_file']` - The Redis swapfile.
 
-** The following configuration settings may only work with a recent Redis release. **
+** The following configuration settings are only available in redis >= 2.1.12 -- http://redis.io/commands/slowlog **
 
 * `['redis']['config']['configure_slowlog']` - Adds or Removes slowlog options from your redis.conf [ true, nil ]
 * `['redis']['config']['slowlog_log_slower_than']` - Time in microseconds a command must run beyond to be caught by the slow logger.
