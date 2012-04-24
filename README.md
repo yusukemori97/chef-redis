@@ -6,18 +6,65 @@ Install and configure [Redis](http://redis.io/).
 
 This cookbook has only been tested on Ubuntu 10.04 and 11.04.
 
+## Cookbooks:
+
+* [chef-ark](https://github.com/bryanwb/chef-ark)
+* [build-essential](https://github.com/opscode-cookbooks/build-essential)
+* [runit](https://github.com/opscode-cookbooks/runit)
+
 # ATTRIBUTES:
 
-redis.config.listen_addr:: Address to listen on. Defaults to localhost.
-redis.config.listen_port:: Port to listen on.
-redis.config.appendonly:: Use the AOF file writing system.
-redis.config.vm.enabled:: Use Redis' virtual memory.
+## Installation:
+* `['redis']['install_type']` - Install the Package by default.
+* `['redis']['source']['sha']` - The sha256 checksum of the source tarball.
+* `['redis']['source']['url']` - The url to the source tarball.
+* `['redis']['source']['version']` - The version of Redis to install.
+* `['redis']['src_dir']` - Extract the Redis source to this directory.
+* `['redis']['dst_dir']` - Install compiled Redis to this directory.
+* `['redis']['conf_dir']` - The Redis configuration directory.
+* `['redis']['init_style']` - A value of "init" is currently recommended, but full runit support is coming soon.
 
-Additional attributes are available for performance tuning, see attributes/default.rb for more information.
+## Configuration:
+
+The config file template should support all current configuration options. If we've missed something please file a ticket.
+
+* `['redis']['config']['appendonly']` - Use the AOF file writing system.
+* `['redis']['config']['appendfsync']` -
+* `['redis']['config']['daemonize']` -
+* `['redis']['config']['databases']` -
+* `['redis']['config']['dbfilename']` -
+* `['redis']['config']['dir']` -
+* `['redis']['config']['listen_addr']` - Address to listen on. Defaults to localhost.
+* `['redis']['config']['listen_port']` - Port to listen on.
+* `['redis']['config']['logfile']` -
+* `['redis']['config']['loglevel']` -
+* `['redis']['config']['pidfile']` -
+* `['redis']['config']['rdbcompression']` -
+* `['redis']['config']['timeout']` -
+* `['redis']['config']['vm']['enabled']`- Use Redis' virtual memory.
+* `['redis']['config']['vm']['max_memory']` -
+* `['redis']['config']['vm']['max_threads']` -
+* `['redis']['config']['vm']['page_size']` -
+* `['redis']['config']['vm']['pages']` -
+* `['redis']['config']['vm']['vm_swap_file']` -
+
+The following configuration settings may only work with a recent redis release.
+
+* `['redis']['config']['configure_slowlog']` - 
+* `['redis']['config']['slowlog_log_slower_than']` - 
+* `['redis']['config']['slowlog_max_len']` - 
 
 # USAGE:
 
+There are several recipes broken up into reusable pieces. For ease of use, we've also included wrappers that map the most common use.
+
 The recipe redis::server will install and configure a Redis server.
+The recipe redis::server_package will install and configure a Redis server.
+The recipe redis::default will install and configure a Redis server.
+
+The recipe redis::server_source will install and configure a Redis server.
+
+# CONTRIBUTE:
 
 # LICENSE & AUTHOR:
 Author:: Miah Johnson (<miah@cx.com>)
