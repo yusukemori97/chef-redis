@@ -48,7 +48,7 @@ The config file template should support all current configuration options. If we
 * `['redis']['config']['vm']['pages']` -
 * `['redis']['config']['vm']['vm_swap_file']` -
 
-The following configuration settings may only work with a recent redis release.
+The following configuration settings may only work with a recent Redis release.
 
 * `['redis']['config']['configure_slowlog']` - 
 * `['redis']['config']['slowlog_log_slower_than']` - 
@@ -60,10 +60,10 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 
 * `redis::_group` - Creates a group for Redis.
 * `redis::_server_config` - Creates configuration directories and installs templatized redis.conf.
-* `redis::_server_init` - Installs a templatized redis sysv initscript.
+* `redis::_server_init` - Installs a templatized Redis sysv initscript.
 * `redis::_server_install_from_package` - Installs Redis through the chef package resource.
 * `redis::_server_install_from_package` - Downloads, compiles, and installs Redis from source.
-* `redis::_server_runit` - Installs templatized redis runit configuration.
+* `redis::_server_runit` - Installs templatized Redis runit configuration.
 * `redis::_server_service` - Configures Redis through the chef service resource.
 * `redis::_user` - Creates a user for Redis.
 * `redis::default` - The default recipe executes the redis::server_package recipe.
