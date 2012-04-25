@@ -1,0 +1,7 @@
+bundler_args: --without development
+language: ruby
+script: rspec
+rvm:
+  - 1.9.3
+env:
+  - CHEF_VERSION=0.10.8

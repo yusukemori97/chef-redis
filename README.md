@@ -77,6 +77,8 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 
 Please feel free to add issues, and submit pull requests to our [github](https://github.com/CXInc/chef-redis)!
 
+[![Build Status](https://secure.travis-ci.org/CXInc/chef-redis.png?branch=master)](http://travis-ci.org/CXInc/chef-redis)
+
 # LICENSE & AUTHOR:
 Author:: Miah Johnson (<miah@cx.com>)
 Copyright:: 2012, CX, Inc
