@@ -81,7 +81,7 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 * `redis::_server_config` - Creates configuration directories and installs templatized redis.conf.
 * `redis::_server_init` - Installs a templatized Redis sysv initscript.
 * `redis::_server_install_from_package` - Installs Redis through the chef package resource.
-* `redis::_server_install_from_package` - Downloads, compiles, and installs Redis from source.
+* `redis::_server_install_from_source` - Downloads, compiles, and installs Redis from source.
 * `redis::_server_runit` - Installs templatized Redis runit configuration.
 * `redis::_server_service` - Configures Redis through the chef service resource.
 * `redis::_user` - Creates a user for Redis.
