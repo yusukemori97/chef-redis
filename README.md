@@ -92,7 +92,7 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 
 # CONTRIBUTE:
 
-Please feel free to add issues, and submit pull requests to our [github](https://github.com/CXInc/chef-redis)!
+Please feel free to add issues, and submit pull requests to our [github](https://github.com/miah/chef-redis)!
 
 # LICENSE & AUTHOR:
 Author:: Miah Johnson (<miah@cx.com>)
