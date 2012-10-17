@@ -95,8 +95,7 @@ There are several recipes broken up into reusable pieces. For ease of use, we've
 Please feel free to add issues, and submit pull requests to our [github](https://github.com/miah/chef-redis)!
 
 # LICENSE & AUTHOR:
-Author:: Miah Johnson (<miah@cx.com>)
-Copyright:: 2012, CX, Inc
+Author:: Miah Johnson (<miah@chia-pet.org>)
 Author:: Noah Kantrowitz (<nkantrowitz@crypticstudios.com>)
 Copyright:: 2010, Atari, Inc
 
