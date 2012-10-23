@@ -2,10 +2,10 @@
 # Cookbook Name:: redis
 # Recipe:: _server_service
 
-redis_service = case node['platform']
-when "ubuntu", "debian"
+redis_service = case node['platform_family']
+when "debian"
   "redis-server"
-when "centos", "redhat"
+when "rhel", "fedora"
   "redis"
 else
   "redis"
