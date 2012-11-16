@@ -2,10 +2,10 @@
 # Cookbook Name:: redis
 # Recipe:: _server_install_from_package
 
-case node.platform
-when "debian", "ubuntu"
+case node['platform_family']
+when "debian"
   pkg = "redis-server"
-when "redhat", "centos", "scientific", "fedora"
+when "rhel", "fedora"
   include_recipe "yum::epel"
   pkg = "redis"
 else
