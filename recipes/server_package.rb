@@ -18,8 +18,4 @@
 # limitations under the License.
 #
 
-include_recipe "redis::_group"
-include_recipe "redis::_user"
 include_recipe "redis::_server_install_from_package"
-include_recipe "redis::_server_service"
-include_recipe "redis::_server_config"
