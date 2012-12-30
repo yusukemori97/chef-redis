@@ -2,8 +2,8 @@ def load_current_resource
   # Because these attributes are loaded lazily
   # we have to call each one explicitly
   new_resource.vm_swap_file new_resource.vm_swap_file ||"/var/lib/redis/#{new_resource.name}.swap"
-  new_resource.pidfile      new_resource.pidfile || "/var/run/redis-#{new_resource.name}.pid"
-  new_resource.logfile      new_resource.logfile || "/var/log/redis-#{new_resource.name}.log"
+  new_resource.pidfile      new_resource.pidfile || "/var/run/redis/#{new_resource.name}.pid"
+  new_resource.logfile      new_resource.logfile || "/var/log/redis/#{new_resource.name}.log"
   new_resource.dbfilename   new_resource.dbfilename || "#{new_resource.name}.rdb"
   new_resource.user         new_resource.user  || node.redis.user
   new_resource.group        new_resource.group || node.redis.group
@@ -46,8 +46,8 @@ end
 
 action :create do
   create_user_and_group
-  create_config
   create_service
+  create_config
 end
 
 
