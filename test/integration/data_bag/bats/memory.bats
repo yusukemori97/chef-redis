@@ -8,7 +8,7 @@
   [ "$(chkconfig --list redis-memory | grep 3:on)" ]
 }
 
-@test "redis should be listening" {
+@test "redis should be listening on port 7000" {
   [ "$(netstat -plant | grep redis) | grep 7000" ]
 }
 
