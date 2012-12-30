@@ -40,11 +40,14 @@ def load_current_resource
 
   new_resource.configure_set_max_intset_entries
   new_resource.set_max_intset_entries
+
+  new_resource.init_style
 end
 
 action :create do
   create_user_and_group
   create_config
+  create_service
 end
 
 
@@ -74,14 +77,40 @@ def create_config
     mode 0755
   end
 
+  redis_service_name = redis_service
   template "#{new_resource.conf_dir}/#{new_resource.name}.conf" do
-    Chef::Log.info new_resource.to_hash.inspect
     source "redis.conf.erb"
     owner "root"
     group "root"
     mode 0644
     variables new_resource.to_hash
-    #TODO
-    #  notifies :restart, "service[redis]", :immediate
+    notifies :restart, "service[#{redis_service_name}]", :immediate
   end
+end
+
+def create_service
+  template "/etc/init.d/redis-#{new_resource.name}" do
+    source "redis_init.erb"
+    owner "root"
+    group "root"
+    mode 0755
+    variables new_resource.to_hash
+  end
+
+
+  service redis_service do
+    action [ :enable, :start ]
+  end
+
+end
+
+def redis_service
+  redis_service = case node.platform_family
+                  when "debian"
+                    "redis-server-#{new_resource.name}"
+                  when "rhel", "fedora"
+                    "redis-#{new_resource.name}"
+                  else
+                    "redis-#{new_resource.name}"
+                  end
 end
