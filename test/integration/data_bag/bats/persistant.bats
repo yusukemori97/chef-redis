@@ -5,7 +5,7 @@
 }
 
 @test "redis should start on boot" {
-  [ "$(chkconfig --list redis-default | grep 3:on)" ]
+  [ "$(chkconfig --list redis-persistant | grep 3:on)" ]
 }
 
 @test "redis should be listening" {
@@ -13,7 +13,7 @@
 }
 
 @test "the config file should be in place" {
-  [ -f /etc/redis/default.conf ]
+  [ -f /etc/redis/persistant.conf ]
 }
 
 @test "the redis user should be there" {
@@ -22,4 +22,5 @@
 
 @test "the log directory should be there" {
   [ -d /var/log/redis ]
+  [ -f /var/log/redis/persistant.log ]
 }

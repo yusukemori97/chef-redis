@@ -1,6 +1,4 @@
-redis_instance "node" do
-  src_dir       node.redis.src_dir
-  dst_dir       node.redis.dst_dir
+redis_instance "instance" do
   conf_dir      node.redis.conf_dir
   init_style    node.redis.init_style
 
@@ -22,12 +20,12 @@ redis_instance "node" do
   pidfile        node.redis.config.pidfile
   rdbcompression node.redis.config.rdbcompression
   timeout        node.redis.config.timeout
-  enabled        node.redis.config.vm.enabled
-  max_memory     node.redis.config.vm.max_memory
-  max_threads    node.redis.config.vm.max_threads
-  page_size      node.redis.config.vm.page_size
-  pages          node.redis.config.vm.pages
-  vm_swap_file   node.redis.config.vm.vm_swap_file
+  vm_enabled        node.redis.config.vm.enabled
+  vm_max_memory     node.redis.config.vm.max_memory
+  vm_max_threads    node.redis.config.vm.max_threads
+  vm_page_size      node.redis.config.vm.page_size
+  vm_pages          node.redis.config.vm.pages
+  vm_swap_file      node.redis.config.vm.vm_swap_file
 
   ###
   ## following the configuration settings may only work with a recent redis release

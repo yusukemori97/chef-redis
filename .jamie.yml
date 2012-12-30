@@ -11,4 +11,8 @@ suites:
   attributes:
     redis:
       instances:
-      - "default"
+      - "memory"
+      - "persistant"
+- name: server
+  run_list:
+    - "recipe[redis::server]"

@@ -24,4 +24,4 @@ when "source"
   include_recipe "redis::server_source"
 end
 
-include_recipe "recipe::_instance"
+include_recipe "redis::_instance"
