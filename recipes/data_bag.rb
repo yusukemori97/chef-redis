@@ -1,4 +1,4 @@
-include_recipe "redis::server"
+include_recipe "redis::install"
 
 bag = node.redis.data_bag_name
 
