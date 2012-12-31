@@ -22,6 +22,10 @@ attribute :loglevel,       :kind_of => String, :default => "warning"
 attribute :pidfile,        :kind_of => String#, :default => "/var/run/redis/#{name}.pid"
 attribute :rdbcompression, :kind_of => String, :default => "yes"
 attribute :timeout,        :kind_of => String, :default => "300"
+attribute :save,           :kind_of => Array,  :default => ['900 1', '300 10', '60 10000']
+attribute :activerehashing,:kind_of => String, :default => "yes"
+
+# vm configuration
 attribute :vm_enabled,     :kind_of => String, :default => "no"
 attribute :vm_max_memory,  :kind_of => String, :default => "0"
 attribute :vm_max_threads, :kind_of => String, :default => "4"

@@ -19,6 +19,9 @@ def load_current_resource
   new_resource.loglevel
   new_resource.rdbcompression
   new_resource.timeout
+  new_resource.save
+  new_resource.activerehashing
+
   new_resource.vm_enabled
   new_resource.vm_max_memory
   new_resource.vm_max_threads

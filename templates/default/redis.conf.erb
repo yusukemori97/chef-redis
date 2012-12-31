@@ -64,10 +64,9 @@ databases <%= @databases %>
 #   after 60 sec if at least 10000 keys changed
 #
 #   Note: you can disable saving at all commenting all the "save" lines.
-
-save 900 1
-save 300 10
-save 60 10000
+<% @save.each do |line| %>
+save <%= line %>
+<% end %>
 
 # Compress string objects using LZF when dump .rdb databases?
 # For default that's set to 'yes' as it's almost always a win.
@@ -401,7 +400,7 @@ hash-max-zipmap-value 512
 #
 # use "activerehashing yes" if you don't have such hard requirements but
 # want to free memory asap when possible.
-activerehashing yes
+activerehashing <%= @activerehashing %>
 
 ################################## INCLUDES ###################################
 
