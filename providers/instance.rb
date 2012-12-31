@@ -53,6 +53,7 @@ end
 
 
 action :destroy do
+  disable_service
   new_resource.updated_by_last_action(true)
 end
 
@@ -103,7 +104,12 @@ def create_service
   service redis_service do
     action [ :enable, :start ]
   end
+end
 
+def disable_service
+  service redis_service do
+    action [ :disable, :stop ]
+  end
 end
 
 def redis_service
