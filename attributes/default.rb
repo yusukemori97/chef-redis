@@ -33,12 +33,12 @@ default.redis.user  = "redis"
 default.redis.group = "redis"
 
 # vm configuration
-default.redis.config.vm.enabled      = "no"
-default.redis.config.vm.max_memory   = "0"
-default.redis.config.vm.max_threads  = "4"
-default.redis.config.vm.page_size    = "32"
-default.redis.config.vm.pages        = "134217728"
-default.redis.config.vm.vm_swap_file = "/var/lib/redis/redis.swap"
+default.redis.config.vm_enabled      = "no"
+default.redis.config.vm_max_memory   = "0"
+default.redis.config.vm_max_threads  = "4"
+default.redis.config.vm_page_size    = "32"
+default.redis.config.vm_pages        = "134217728"
+default.redis.config.vm_swap_file = "/var/lib/redis/redis.swap"
 
 ###
 ## the following configuration settings may only work with a recent redis release
