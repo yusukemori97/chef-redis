@@ -7,6 +7,8 @@ include_recipe "build-essential"
 redis_source_tarball = "redis-#{node.redis.source.version}.tar.gz"
 redis_source_url = "#{node.redis.source.url}/#{redis_source_tarball}"
 
+user node.redis.user
+
 %w[ src_dir dst_dir ].each do |dir|
   directory node.redis[dir] do
     owner node.redis.user

@@ -112,7 +112,14 @@ def create_service
   when "debian"
     include_recipe "runit"
 
-    runit_service "redis"
+    runit_service "redis" do
+      options({
+        :name     => resource.name,
+        :dst_dir  => resource.dst_dir,
+        :conf_dir => resource.conf_dir,
+        :user     => resource.user
+      })
+    end
   end
 end
 
