@@ -95,17 +95,24 @@ def create_config
 end
 
 def create_service
-  template "/etc/init.d/redis-#{new_resource.name}" do
-    source "redis_init.erb"
-    owner "root"
-    group "root"
-    mode 0755
-    variables new_resource.to_hash
-  end
+  case node.platform_family
+  when "rhel","fedora"
+    template "/etc/init.d/redis-#{new_resource.name}" do
+      source "redis_init.erb"
+      owner "root"
+      group "root"
+      mode 0755
+      variables new_resource.to_hash
+    end
 
 
-  service redis_service do
-    action [ :enable, :start ]
+    service redis_service do
+      action [ :enable, :start ]
+    end
+  when "debian"
+    include_recipe "runit"
+
+    runit_service "redis"
   end
 end
 

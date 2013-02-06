@@ -1,4 +1,6 @@
 ---
+driver_plugin: vagrant
+
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -33,6 +35,12 @@ suites:
       instances:
       - "memory"
       - "persistant"
-- name: server
+- name: package
   run_list:
     - "recipe[redis::server]"
+- name: source
+  run_list:
+    - "recipe[redis::server]"
+  attributes:
+    redis:
+      install_type: source
