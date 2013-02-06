@@ -7,7 +7,13 @@ def load_current_resource
   new_resource.dbfilename   new_resource.dbfilename || "#{new_resource.name}.rdb"
   new_resource.user         new_resource.user  || node.redis.user
   new_resource.group        new_resource.group || node.redis.group
-  new_resource.init_style
+
+  init_style = new_resource.init_style || case node.platform_family
+when "debian"
+  "runit"
+when "rhel","fedora"
+  "init"
+end
   new_resource.configure_no_appendfsync_on_rewrite
   new_resource.configure_slowlog
   new_resource.configure_list_max_ziplist
@@ -46,13 +52,13 @@ def create_config
   directory new_resource.conf_dir do
     owner "root"
     group "root"
-    mode 0755
+    mode 00755
   end
 
   directory new_resource.dir do
     owner new_resource.user
     group new_resource.group
-    mode 0755
+    mode 00755
   end
 
   redis_service_name = redis_service
@@ -60,20 +66,25 @@ def create_config
     source "redis.conf.erb"
     owner "root"
     group "root"
-    mode 0644
+    mode 00644
     variables :config => new_resource.state
-    notifies :restart, "service[#{redis_service_name}]", :immediate
+    case new_resource.init_style
+    when "init"
+      notifies :restart, "service[#{redis_service_name}]", :immediate
+    when "runit"
+      notifies :restart, "runit_service[#{redis_service_name}]", :immediate
+    end
   end
 end
 
 def create_service
-  case node.platform_family
-  when "rhel","fedora"
+  case new_resource.init_style
+  when "init"
     template "/etc/init.d/redis-#{new_resource.name}" do
       source "redis_init.erb"
       owner "root"
       group "root"
-      mode 0755
+      mode 00755
       variables new_resource.to_hash
     end
 
@@ -81,15 +92,13 @@ def create_service
     service redis_service do
       action [ :enable, :start ]
     end
-  when "debian"
-    include_recipe "runit"
-
+  when "runit"
     runit_service "redis" do
       options({
-        :name     => resource.name,
-        :dst_dir  => resource.dst_dir,
-        :conf_dir => resource.conf_dir,
-        :user     => resource.user
+        :name     => new_resource.name,
+        :dst_dir  => new_resource.dst_dir,
+        :conf_dir => new_resource.conf_dir,
+        :user     => new_resource.user
       })
     end
   end

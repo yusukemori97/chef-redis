@@ -5,7 +5,7 @@ attribute :name,  :kind_of => String, :name_attribute => true
 attribute :user,  :kind_of => String, :default => "redis"
 attribute :group, :kind_of => String, :default => "redis"
 
-attribute :init_style,     :kind_of => String, :default => "init"
+attribute :init_style,     :kind_of => String
 
 # configuration
 attribute :appendonly,     :kind_of => [TrueClass, FalseClass], :default => false
