@@ -1,6 +1,6 @@
 {
   "id": "memory",
-  "listen_addr": "0.0.0.0",
-  "listen_port": "7000",
+  "bind": "0.0.0.0",
+  "port": 7000,
   "save":[]
 }
