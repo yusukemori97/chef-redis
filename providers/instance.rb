@@ -8,12 +8,7 @@ def load_current_resource
   new_resource.user         new_resource.user  || node.redis.user
   new_resource.group        new_resource.group || node.redis.group
 
-  init_style = new_resource.init_style || case node.platform_family
-when "debian"
-  "runit"
-when "rhel","fedora"
-  "init"
-end
+
   new_resource.configure_no_appendfsync_on_rewrite
   new_resource.configure_slowlog
   new_resource.configure_list_max_ziplist
@@ -23,6 +18,8 @@ end
 
 
   new_resource.state # Load attributes
+
+  @run_context.include_recipe "runit" if new_resource.init_style == "runit"
 end
 
 action :create do
@@ -87,7 +84,6 @@ def create_service
       mode 00755
       variables new_resource.to_hash
     end
-
 
     service redis_service do
       action [ :enable, :start ]
