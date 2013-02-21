@@ -27,6 +27,18 @@ platforms:
   run_list:
   - recipe[yum::epel]
 suites:
+- name: sentinel
+  run_list:
+    - "recipe[redis::sentinel]"
+- name: replication
+  run_list:
+    - "recipe[redis::data_bag]"
+  attributes:
+    redis:
+      instances:
+      - "memory"
+      - "persistant"
+      - "sentinel"
 - name: data_bag
   run_list:
     - "recipe[redis::data_bag]"
