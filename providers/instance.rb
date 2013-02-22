@@ -24,8 +24,9 @@ end
 
 action :create do
   create_user_and_group
-  create_service
+  create_service_script
   create_config
+  enable_service
   new_resource.updated_by_last_action(true)
 end
 
@@ -74,7 +75,7 @@ def create_config
   end
 end
 
-def create_service
+def create_service_script
   case new_resource.init_style
   when "init"
     template "/etc/init.d/redis-#{new_resource.name}" do
@@ -83,10 +84,6 @@ def create_service
       group "root"
       mode 00755
       variables new_resource.to_hash
-    end
-
-    service redis_service do
-      action [ :enable, :start ]
     end
   when "runit"
     runit_service "redis" do
@@ -97,6 +94,12 @@ def create_service
         :user     => new_resource.user
       })
     end
+  end
+end
+
+def enable_service
+  service redis_service do
+    action [ :enable, :start ]
   end
 end
 

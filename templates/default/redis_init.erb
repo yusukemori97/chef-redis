@@ -20,7 +20,7 @@
 ### END INIT INFO
 
 
-REDISPORT=<%= @listen_port %>
+REDISPORT=<%= @port %>
 <% if node.redis.install_type == "package" %>
 <% case node.platform_family %>
 <% when "rhel", "fedora" %>
