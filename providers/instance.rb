@@ -67,9 +67,9 @@ def create_config
     variables :config => new_resource.state
     case new_resource.init_style
     when "init"
-      notifies :restart, "service[#{redis_service_name}]", :immediate
+      notifies :restart, "service[#{redis_service_name}]"
     when "runit"
-      notifies :restart, "runit_service[#{redis_service_name}]", :immediate
+      notifies :restart, "runit_service[#{redis_service_name}]"
     end
   end
 end
@@ -107,12 +107,5 @@ def disable_service
 end
 
 def redis_service
-  redis_service = case node.platform_family
-                  when "debian"
-                    "redis-server-#{new_resource.name}"
-                  when "rhel", "fedora"
-                    "redis-#{new_resource.name}"
-                  else
-                    "redis-#{new_resource.name}"
-                  end
+  "redis-#{new_resource.name}"
 end
