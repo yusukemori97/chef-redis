@@ -44,3 +44,6 @@ suites:
   attributes:
     redis:
       install_type: source
+      config:
+        logfile: /var/log/redis/server.log
+
