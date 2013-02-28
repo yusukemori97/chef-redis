@@ -47,6 +47,14 @@ def create_user_and_group
 end
 
 def create_config
+  if new_resource.logfile.downcase != "stdout"
+    directory ::File.dirname(new_resource.logfile) do
+      owner new_resource.user
+      group new_resource.group
+      mode 00755
+    end
+  end
+
   directory new_resource.conf_dir do
     owner "root"
     group "root"

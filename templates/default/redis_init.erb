@@ -43,7 +43,9 @@ case "$1" in
         then
                 echo "$PIDFILE exists, process is already running or crashed"
         else
+                <% if @logfile.downcase != "stdout" %>
                 chown -R <%= @user %>:<%= @user %> <%= @logfile %>
+                <% end %>
                 echo "Starting Redis server..."
                 sudo -u <%= @user %> $EXEC $CONF
         fi
