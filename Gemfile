@@ -1,7 +1,9 @@
 source :rubygems
 
-gem 'berkshelf'
-gem 'jamie',         :group => :integration
-gem 'jamie-vagrant', :group => :integration
-gem 'rake'
-gem 'foodcritic'
+group :integration do
+    gem 'berkshelf'
+    gem 'jamie'
+    gem 'jamie-vagrant'
+    gem 'rake'
+    gem 'foodcritic'
+end
