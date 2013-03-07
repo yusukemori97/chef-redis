@@ -17,5 +17,16 @@ module ChefRedis
     def format_key(k)
       k.to_s.gsub('_', '-')
     end
+
+    def get_installed_version
+      return @@version if @@version # Only shell out once per run
+      @@version = %x{
+        #{File.join(node.redis.dst_dir, 'bin/redis-server')} --version
+      }.scan(/v=((\d+\.?){3})/).flatten.first
+    end
+
+    def set_installed_version(node)
+      node.normal.redis.installed_version = get_installed_version
+    end
   end
 end

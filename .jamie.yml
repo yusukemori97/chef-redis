@@ -46,4 +46,12 @@ suites:
       install_type: source
       config:
         logfile: /var/log/redis/server.log
-
+- name: source-2.6.10
+  run_list:
+    - "recipe[redis::server]"
+  attributes:
+    redis:
+      install_type: source
+      source:
+        version: 2.6.10
+        sha: 7c8ac91c2607ae61e2b50a9a7df25120af6df364
