@@ -25,14 +25,6 @@ attribute :timeout,        :kind_of => Fixnum, :default => 300
 attribute :save,           :kind_of => Array,  :default => ['900 1', '300 10', '60 10000']
 attribute :activerehashing,:kind_of => [TrueClass, FalseClass], :default => true
 
-# vm configuration
-attribute :vm_enabled,     :kind_of => [TrueClass, FalseClass], :default => false
-attribute :vm_max_memory,  :kind_of => Fixnum, :default => 0
-attribute :vm_max_threads, :kind_of => Fixnum, :default => 4
-attribute :vm_page_size,   :kind_of => Fixnum, :default => 32
-attribute :vm_pages,       :kind_of => Fixnum, :default => 134217728
-attribute :vm_swap_file,   :kind_of => String
-
 ###
 ## the following configuration settings may only work with a recent redis release
 ###
@@ -73,13 +65,6 @@ state_attrs(
  :timeout,
  :save,
  :activerehashing,
-
- :vm_enabled,
- :vm_max_memory,
- :vm_max_threads,
- :vm_page_size,
- :vm_pages,
- :vm_swap_file,
 
  :slowlog_log_slower_than,
  :slowlog_max_len,
