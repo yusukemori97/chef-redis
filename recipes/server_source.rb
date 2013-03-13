@@ -42,6 +42,15 @@ execute "redis-extract-source" do
   notifies :run, "execute[make-redis]", :immediately
 end
 
+if node.redis.symlink_binaries
+  Dir.foreach("#{node.redis.dst_dir}/bin") do |item|
+    next if item == '..' || item == '.'
+    link "/sbin/#{item}" do
+      to "#{node.redis.dst_dir}/bin/#{item}"
+    end
+  end
+end
+
 remote_file "#{Chef::Config.file_cache_path}/#{redis_source_tarball}" do
   source redis_source_url
   mode 0644
