@@ -42,12 +42,10 @@ execute "redis-extract-source" do
   notifies :run, "execute[make-redis]", :immediately
 end
 
-if node.redis.symlink_binaries
-  Dir.foreach("#{node.redis.dst_dir}/bin") do |item|
-    next if item == '..' || item == '.'
-    link "/sbin/#{item}" do
-      to "#{node.redis.dst_dir}/bin/#{item}"
-    end
+["redis-server", "redis-cli"].each do |item|
+  link "/sbin/#{item}" do
+    to "#{node.redis.dst_dir}/bin/#{item}"
+    only_if { node.redis.symlink_binaries }
   end
 end
 
