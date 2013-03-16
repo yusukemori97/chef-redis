@@ -1,7 +1,7 @@
 include_recipe "redis::install"
 
 redis_sentinel "sentinel" do
-  #conf_dir      node.redis.conf_dir
+  conf_dir      node.redis.conf_dir
   init_style    node.redis.init_style
 
   # user service & group

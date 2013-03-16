@@ -28,6 +28,7 @@ end
 
 action :create do
   create_user_and_group
+  create_directories
   create_service_script
   create_config
   enable_service
@@ -50,7 +51,7 @@ def create_user_and_group
   end
 end
 
-def create_config
+def create_directories
   directory "#{::File.dirname(new_resource.logfile)} (#{new_resource.name})" do
     path ::File.dirname(new_resource.logfile)
     owner new_resource.user
@@ -70,7 +71,9 @@ def create_config
     group new_resource.group
     mode 00755
   end
+end
 
+def create_config
   redis_service_name = redis_service
   template "#{new_resource.conf_dir}/#{new_resource.name}.conf" do
     source "redis.conf.erb"

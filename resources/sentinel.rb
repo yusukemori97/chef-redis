@@ -4,9 +4,11 @@ actions   :create, :destroy
 attribute :name,  :kind_of => String, :name_attribute => true
 attribute :user,  :kind_of => String, :default => "redis"
 attribute :group, :kind_of => String, :default => "redis"
-attribute :init_style,    :kind_of => String, :default => "init"
-attribute :pidfile,       :kind_of => String
-attribute :daemonize,     :kind_of => [TrueClass, FalseClass], :default => true
+attribute :init_style,      :kind_of => String, :default => "init"
+attribute :pidfile,         :kind_of => String
+attribute :log_file,        :kind_of => String
+attribute :conf_dir,        :kind_of => String, :default => "/etc/redis"
+attribute :daemonize,       :kind_of => [TrueClass, FalseClass], :default => true
 
 # Interesting part
 attribute :master_name,             :kind_of => String
