@@ -30,6 +30,9 @@ suites:
 - name: sentinel
   run_list:
     - "recipe[redis::sentinel]"
+  attributes:
+    redis:
+      install_type: source
 - name: replication
   run_list:
     - "recipe[redis::data_bag]"
