@@ -11,8 +11,10 @@ attribute :conf_dir,        :kind_of => String, :default => "/etc/redis"
 attribute :daemonize,       :kind_of => [TrueClass, FalseClass], :default => true
 
 # Interesting part
-attribute :master_name,             :kind_of => String
-attribute :monitor,                 :kind_of => Hash # TODO validate name, address, port, quorum
+attribute :master_name,             :kind_of => String, :required => true
+attribute :monitor_address,         :kind_of => String, :default => "127.0.0.1"
+attribute :monitor_port,            :kind_of => Fixnum, :default => 6379
+attribute :monitor,                 :kind_of => String
 attribute :down_after_milliseconds, :kind_of => Fixnum, :default => 60000
 attribute :failover_timeout,        :kind_of => Fixnum, :default => 900000
 attribute :can_failover,            :kind_of => [TrueClass, FalseClass], :default => true
@@ -33,12 +35,9 @@ def initialize(*args)
 end
 
 state_attrs(
-  :master_name,
   :monitor,
   :down_after_milliseconds,
   :failover_timeout,
   :can_failover,
   :parallel_syncs,
-  :quorum,
-  :port,
 )

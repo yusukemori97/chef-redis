@@ -4,6 +4,9 @@ def load_current_resource
   new_resource.log_file     new_resource.log_file || node.redis.config.logfile
 
   new_resource.state # Load attributes
+
+  monitor_string = [new_resource.monitor_address, new_resource.monitor_port, new_resource.quorum].join(" ")
+  new_resource.monitor     new_resource.monitor   || monitor_string
 end
 
 action :create do
@@ -58,7 +61,14 @@ def create_config
     owner "root"
     group "root"
     mode 00644
-    variables :config => new_resource.state
+    variables :sentinel => new_resource.state,
+              :master_name => new_resource.master_name,
+              :config => {
+                :port      => new_resource.port,
+                :pidfile   => new_resource.pidfile,
+                :logfile   => new_resource.log_file,
+                :daemonize => new_resource.daemonize,
+              }
     case new_resource.init_style
     when "init"
       notifies :restart, "service[redis-sentinel-#{new_resource.name}]"

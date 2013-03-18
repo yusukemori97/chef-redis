@@ -1,12 +1,8 @@
-<% @config.each do |key, value| -%>
-  <% next if value.nil? -%>
-<%= ChefRedis.template_format(key, value) %>
-<% end %>
-<% unless @config["monitor"].nil? -%>
-  <% @config["monitor"].each do |master_name, options| -%>
-    <% options.each do |key, value| -%>
+<% @sentinel.each do |key, value| -%>
       <% next if value.nil? -%>
-<%= ChefRedis.template_format("sentinel #{key} #{master_name}", value) %>
-    <% end -%>
-  <% end -%>
+<%= ChefRedis.template_format("sentinel #{key} #{@master_name}", value) %>
+<% end -%>
+<% @config.each do |key, value| -%>
+      <% next if value.nil? -%>
+<%= ChefRedis.template_format(key, value) %>
 <% end -%>
