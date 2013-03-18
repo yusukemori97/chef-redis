@@ -22,7 +22,7 @@ CLIEXEC=<%= node.redis.dst_dir %>/bin/redis-cli
 <% end %>
 
 PIDFILE=<%= @pidfile  %>
-CONF="<%= @conf_dir %>/<%= @name %>.conf"
+CONF="<%= @conf_dir %>/redis-sentinel-<%= @name %>.conf"
 
 case "$1" in
     start)
