@@ -71,9 +71,10 @@ The config file template should support all current configuration options. If we
 
 There are several recipes broken up into reusable pieces. For ease of use, we've also included wrappers that map the most common use.
 
-* `redis::default`  - The default recipe executes the redis::server_package recipe.
-* `redis::data_bag` - Create multiple redis instances from data_bags
+* `redis::default`  - Does nothing to allow inclusing on LWRPs for wrapper cookbooks.
+* `redis::data_bag` - Create multiple redis instances from data_bags. uses the instance LWRP.
 * `redis::install`  - Installs redis from source or package based on attributes
+* `redis::sentinel` - Configure a redis sentinel, uses the sentinel LWRP.
 * `redis::server`   - The default recipe executes the redis::server_package recipe. This recipe is here for compatibility with other community Redis cookbooks.
 * `redis::server_package` - Uses the recipe crumbs in the Redis cookbook to manage a packaged Redis instance.
 * `redis::server_source`  - Uses the recipe crumbs in the Redis cookbook to manage a source compiled Redis instance.
