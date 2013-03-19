@@ -4,7 +4,7 @@ maintainer_email "miah@cx.com"
 license          "Apache 2.0"
 description      "Installs/configures redis"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "2.0.0"
+version          "2.0.1"
 
 recipe "redis::_server_install_from_package", "Installs Redis through the chef package resource."
 recipe "redis::_server_install_from_package", "Downloads, compiles, and installs Redis from source."
