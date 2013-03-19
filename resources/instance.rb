@@ -26,7 +26,7 @@ attribute :save,           :kind_of => Array,  :default => ['900 1', '300 10', '
 attribute :activerehashing,:kind_of => [TrueClass, FalseClass], :default => true
 attribute :slaveof,        :kind_of => String, :default => nil
 attribute :slaveof_ip,     :kind_of => String, :default => nil
-attribute :slaveof_port,   :kind_of => Integer, :default => 6379
+attribute :slaveof_port,   :kind_of => Integer, :default => nil
 
 ###
 ## the following configuration settings may only work with a recent redis release
