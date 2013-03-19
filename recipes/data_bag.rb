@@ -12,3 +12,13 @@ node.redis.instances.each do |instance|
     end
   end
 end
+
+node.redis.sentinels.each do |sentinel|
+  sentinel_data = data_bag_item( bag, sentinel )
+
+  redis_sentinel sentinel do
+    sentinel_data.each do |attribute,value|
+      send(attribute, value) unless attribute == "id"
+    end
+  end
+end
