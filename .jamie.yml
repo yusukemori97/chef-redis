@@ -33,7 +33,7 @@ suites:
   attributes:
     redis:
       instances:
-      - "memory"
+      - "memory_slave"
       - "persistant"
 - name: package
   run_list:
@@ -46,12 +46,13 @@ suites:
       install_type: source
       config:
         logfile: /var/log/redis/server.log
-- name: source-2.6.10
+- name: slaveof
   run_list:
     - "recipe[redis::server]"
   attributes:
     redis:
       install_type: source
-      source:
-        version: 2.6.10
-        sha: 7c8ac91c2607ae61e2b50a9a7df25120af6df364
+      config:
+        logfile: /var/log/redis/server.log
+        slaveof_ip: 198.18.0.1
+        slaveof_port: 3000

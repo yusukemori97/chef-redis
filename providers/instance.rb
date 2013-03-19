@@ -7,14 +7,19 @@ def load_current_resource
   new_resource.user         new_resource.user  || node.redis.user
   new_resource.group        new_resource.group || node.redis.group
 
+  new_resource.slaveof_ip   new_resource.slaveof_ip
+  new_resource.slaveof_port new_resource.slaveof_port || node.redis.config.port
 
+  if new_resource.slaveof_ip || new_resource.slaveof
+    new_resource.slaveof      new_resource.slaveof || "#{new_resource.slaveof_ip} #{new_resource.slaveof_port}"
+  end
+    
   new_resource.configure_no_appendfsync_on_rewrite
   new_resource.configure_slowlog
   new_resource.configure_list_max_ziplist
   new_resource.configure_maxmemory_samples
   new_resource.configure_set_max_intset_entries
   new_resource.conf_dir
-
 
   new_resource.state # Load attributes
 

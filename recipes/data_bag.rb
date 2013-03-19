@@ -4,8 +4,9 @@ bag = node.redis.data_bag_name
 
 node.redis.instances.each do |instance|
   instance_data = data_bag_item( bag, instance )
-
-  redis_instance instance do
+  name = instance_data["name"] || instance
+    
+  redis_instance name do
     instance_data.each do |attribute,value|
       send(attribute, value) unless attribute == "id"
     end
