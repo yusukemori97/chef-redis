@@ -20,6 +20,7 @@
 
 # installation
 default.redis.install_type   = "package"
+default.redis.package_name   = "redis-server"
 default.redis.source.sha     = "b0644669849a130659cf8dd48965cf116e4fe64a5bb86a239ea078d7464b6968"
 default.redis.source.url     = "http://redis.googlecode.com/files"
 default.redis.source.version = "2.6.11"

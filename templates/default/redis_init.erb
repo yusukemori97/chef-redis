@@ -26,9 +26,9 @@ REDISPORT=<%= @port %>
 <% when "rhel", "fedora" %>
 EXEC=/usr/sbin/redis-server
 <% when "debian" %>
-EXEC=/usr/bin/redis-server
+EXEC=/usr/local/bin/redis-server
 <% end %>
-CLIEXEC=/usr/bin/redis-cli
+CLIEXEC=/usr/local/bin/redis-cli
 <% else %>
 EXEC=<%= node.redis.dst_dir %>/bin/redis-server
 CLIEXEC=<%= node.redis.dst_dir %>/bin/redis-cli
