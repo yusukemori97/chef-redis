@@ -21,18 +21,8 @@
 
 
 REDISPORT=<%= @port %>
-<% if node.redis.install_type == "package" %>
-<% case node.platform_family %>
-<% when "rhel", "fedora" %>
-EXEC=/usr/sbin/redis-server
-<% when "debian" %>
-EXEC=/usr/local/bin/redis-server
-<% end %>
-CLIEXEC=/usr/local/bin/redis-cli
-<% else %>
-EXEC=<%= node.redis.dst_dir %>/bin/redis-server
-CLIEXEC=<%= node.redis.dst_dir %>/bin/redis-cli
-<% end %>
+EXEC=<%= node.redis.dst_dir %>/redis-server
+CLIEXEC=<%= node.redis.dst_dir %>/redis-cli
 
 PIDFILE=<%= @pidfile %>
 CONF="<%= @conf_dir %>/<%= @name %>.conf"

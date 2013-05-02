@@ -100,7 +100,17 @@ def create_config
   end
 end
 
+def set_dst_dir
+  case node.platform_family
+  when "rhel", "fedora"
+    node.set[:redis][:dst_dir] = "/usr/sbin/"
+  when "debian"
+    node.set[:redis][:dst_dir] = "/usr/bin/"
+  end
+end
+
 def create_service_script
+  set_dst_dir if node.redis.install_type == "package"
   case new_resource.init_style
   when "init"
     template "/etc/init.d/redis-#{new_resource.name}" do
