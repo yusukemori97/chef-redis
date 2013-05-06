@@ -29,7 +29,9 @@ end
 action :create do
   create_user_and_group
   create_directories
-  create_service_script
+  if !node.platform_family == "rhel" && !node.redis.install_type == "package"
+    create_service_script
+  end  
   create_config
   enable_service
   new_resource.updated_by_last_action(true)
@@ -125,5 +127,9 @@ def disable_service
 end
 
 def redis_service
-  "redis-#{new_resource.name}"
+  if node.platform_family == "rhel" && node.redis.install_type == "package"
+    "redis"
+  else
+    "redis-#{new_resource.name}"
+  end
 end
