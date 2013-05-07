@@ -31,7 +31,9 @@ action :create do
   create_directories
   if !node.platform_family == "rhel" && !node.redis.install_type == "package"
     create_service_script
-  end  
+  else
+    create_sysconfig_file  # For RHEL package installs, to set REDIS_USER
+  end
   create_config
   enable_service
   new_resource.updated_by_last_action(true)
@@ -89,6 +91,16 @@ def create_config
     when "runit"
       notifies :restart, "runit_service[#{redis_service_name}]"
     end
+  end
+end
+
+# For RHEL-based installs, to set $REDIS_USER
+def create_sysconfig_file
+  file "/etc/sysconfig/redis" do
+    owner "root"
+    group "root"
+    mode "0755"
+    content "REDIS_USER=#{new_resource.user}\n"
   end
 end
 
