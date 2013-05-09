@@ -29,6 +29,7 @@ default.redis.dst_dir    = "/opt/redis"
 default.redis.conf_dir   = "/etc/redis"
 default.redis.init_style = "init"
 default.redis.symlink_binaries = false
+default.redis.ulimit = 10032
 
 # service user & group
 default.redis.user  = "redis"
