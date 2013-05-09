@@ -20,6 +20,7 @@
 
 # installation
 default.redis.install_type   = "package"
+default.redis.package_name   = "redis-server"
 default.redis.source.sha     = "b0644669849a130659cf8dd48965cf116e4fe64a5bb86a239ea078d7464b6968"
 default.redis.source.url     = "http://redis.googlecode.com/files"
 default.redis.source.version = "2.6.11"
@@ -52,6 +53,18 @@ default.redis.config.list_max_ziplist_value   = 64
 
 default.redis.config.configure_set_max_intset_entries = false
 default.redis.config.set_max_intset_entries = 512
+
+default.redis.config.configure_zset_max_ziplist_entries = false
+default.redis.config.zset_max_ziplist_entries = 128
+
+default.redis.config.configure_zset_max_ziplist_value = false
+default.redis.config.zset_max_ziplist_value = 64
+
+default.redis.config.configure_hash_max_ziplist_entries = false
+default.redis.config.hash_max_ziplist_entries = 512
+
+default.redis.config.configure_hash_max_ziplist_value = false
+default.redis.config.hash_max_ziplist_value = 64
 
 # replication
 default.redis.replication.enabled = false
