@@ -33,10 +33,11 @@ end
 action :create do
   create_user_and_group
   create_directories
-  if !node.platform_family == "rhel" && !node.redis.install_type == "package"
-    create_service_script
+  if node.platform_family == "rhel" && node.redis.install_type == "package"
+    # For RHEL package installs, use the RPM's init script and set REDIS_USER
+    create_sysconfig_file  
   else
-    create_sysconfig_file  # For RHEL package installs, to set REDIS_USER
+    create_service_script
   end
   create_config
   enable_service
