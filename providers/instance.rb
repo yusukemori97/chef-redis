@@ -33,7 +33,12 @@ end
 action :create do
   create_user_and_group
   create_directories
-  create_service_script
+  if node.platform_family == "rhel" && node.redis.install_type == "package"
+    # For RHEL package installs, use the RPM's init script and set REDIS_USER
+    create_sysconfig_file  
+  else
+    create_service_script
+  end
   create_config
   enable_service
   new_resource.updated_by_last_action(true)
@@ -100,6 +105,16 @@ def create_config
   end
 end
 
+# For RHEL-based installs, to set $REDIS_USER
+def create_sysconfig_file
+  file "/etc/sysconfig/redis" do
+    owner "root"
+    group "root"
+    mode "0755"
+    content "REDIS_USER=#{new_resource.user}\n"
+  end
+end
+
 def set_dst_dir
   case node.platform_family
   when "rhel", "fedora"
@@ -145,5 +160,9 @@ def disable_service
 end
 
 def redis_service
-  "redis-#{new_resource.name}"
+  if node.platform_family == "rhel" && node.redis.install_type == "package"
+    "redis"
+  else
+    "redis-#{new_resource.name}"
+  end
 end
