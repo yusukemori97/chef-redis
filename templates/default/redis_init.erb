@@ -44,7 +44,7 @@ case "$1" in
         then
                 echo "$PIDFILE exists, process is already running or crashed"
         else
-                <% if @pidfile == "/var/run/redis/redis.pid %>
+                <% if @pidfile == "/var/run/redis/redis.pid" %>
                 if [ ! -d "<%= @pidfile %>" ]; then
                    mkdir /var/run/redis
                 fi
