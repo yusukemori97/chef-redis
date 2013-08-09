@@ -1,0 +1,79 @@
+---
+driver_plugin: vagrant
+
+platforms:
+<% %w(11.4.4 10.26.0).each do |chef_version| %>
+- name: ubuntu-12.04-<%= chef_version %>
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box
+    require_chef_omnibus: <%= chef_version %>
+  run_list:
+  - recipe[apt]
+- name: ubuntu-10.04-<%= chef_version %>
+  driver_config:
+    box: opscode-ubuntu-10.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-10.04.box
+    require_chef_omnibus: <%= chef_version %>
+  run_list:
+  - recipe[apt]
+- name: centos-6.3-<%= chef_version %>
+  driver_config:
+    box: opscode-centos-6.3
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-6.3.box
+    require_chef_omnibus: <%= chef_version %>
+  run_list:
+  - recipe[yum::epel]
+- name: centos-5.8-<%= chef_version %>
+  driver_config:
+    box: opscode-centos-5.8
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8.box
+    require_chef_omnibus: <%= chef_version %>
+  run_list:
+  - recipe[yum::epel]
+<% end %>
+suites:
+- name: sentinel
+  run_list:
+    - "recipe[redis::sentinel]"
+  attributes:
+    redis:
+      install_type: source
+- name: replication
+  run_list:
+    - "recipe[redis::data_bag]"
+  attributes:
+    redis:
+      instances:
+      - "memory"
+      - "persistant"
+      - "sentinel"
+- name: data_bag
+  run_list:
+    - "recipe[redis::data_bag]"
+  attributes:
+    redis:
+      instances:
+      - "memory_slave"
+      - "persistant"
+- name: package
+  run_list:
+    - "recipe[redis::server]"
+- name: source
+  run_list:
+    - "recipe[redis::server]"
+  attributes:
+    redis:
+      install_type: source
+      config:
+        logfile: /var/log/redis/server.log
+- name: slaveof
+  run_list:
+    - "recipe[redis::server]"
+  attributes:
+    redis:
+      install_type: source
+      config:
+        logfile: /var/log/redis/server.log
+        slaveof_ip: 198.18.0.1
+        slaveof_port: 3000
