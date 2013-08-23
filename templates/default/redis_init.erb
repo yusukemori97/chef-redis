@@ -44,6 +44,11 @@ case "$1" in
         then
                 echo "$PIDFILE exists, process is already running or crashed"
         else
+                <% if @pidfile == "/var/run/redis/redis.pid" %>
+                mkdir -p /var/run/redis
+                chown -R redis:redis /var/run/redis
+                <% end %>
+
                 <% if @logfile.downcase != "stdout" %>
                 chown -R <%= @user %>:<%= @user %> <%= @logfile %>
                 <% end %>
@@ -67,7 +72,11 @@ case "$1" in
                 echo "Redis stopped"
         fi
         ;;
+    restart)
+        ${0} stop
+        ${0} start
+        ;;
     *)
-        echo "Please use start or stop as first argument"
+        echo "Please use start, stop or restart as first argument"
         ;;
 esac
