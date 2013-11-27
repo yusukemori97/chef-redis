@@ -1,4 +1,4 @@
-module Helpers
+module ChefRedis
   module Helpers
     def template_format(key, v)
       k = format_key(key)
