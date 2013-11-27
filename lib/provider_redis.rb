@@ -145,10 +145,10 @@ class Chef
           when 'runit'
             runit_service 'redis' do
               options({
-                          :name     => new_resource.name,
-                          :dst_dir  => new_resource.dst_dir,
-                          :conf_dir => new_resource.conf_dir,
-                          :user     => new_resource.user
+                          name:     new_resource.name,
+                          dst_dir:  new_resource.dst_dir,
+                          conf_dir: new_resource.conf_dir,
+                          user:     new_resource.user
                       })
             end
         end
