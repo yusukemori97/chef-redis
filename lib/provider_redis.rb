@@ -5,6 +5,10 @@ class Chef
   class Provider
     class Redis < Chef::Provider
 
+      def initialize(new_resource, run_context)
+        super
+      end
+
       def load_current_resource
         # Because these attributes are loaded lazily
         # we have to call each one explicitly
