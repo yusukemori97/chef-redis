@@ -1,36 +1,40 @@
-#!/usr/bin/env rake
+require 'rake'
+require 'rake/testtask'
+require 'reek/rake/task'
+require 'rubocop/rake_task'
 
-@cookbook = "chef-redis"
+task :default => 'test:quick'
 
-desc "Runs foodcritic linter"
-task :foodcritic do
-  if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
-    sandbox = File.join(File.dirname(__FILE__), %w{tmp foodcritic}, @cookbook)
-    prepare_foodcritic_sandbox(sandbox)
+namespace :test do
 
-    sh "foodcritic --epic-fail any #{File.dirname(sandbox)}"
-  else
-    puts "WARN: foodcritic run is skipped as Ruby #{RUBY_VERSION} is < 1.9.2."
+  Rubocop::RakeTask.new
+
+  Rake::TestTask.new do |t|
+    t.name = :minitest
+    t.libs = %w(lib lib/chef_redis lib/chef_redis/instance)
+    t.test_files = Dir.glob('test/spec/**/*_spec.rb')
   end
+
+  Reek::Rake::Task.new do |t|
+    t.fail_on_error = false
+    t.source_files = 'lib/**/*.rb'
+  end
+
+  desc 'Run all of the quick tests.'
+  task :all do
+    Rake::Task['test:minitest'].invoke
+    Rake::Task['test:reek'].invoke
+    Rake::Task['test:rubocop'].invoke
+  end
+
 end
 
-task :default => 'foodcritic'
+namespace :release do
 
-private
+  task :update_metadata do
+  end
 
-def prepare_foodcritic_sandbox(sandbox)
-  files = %w{*.md *.rb attributes definitions files providers
-recipes resources templates}
+  task :tag_release do
+  end
 
-  rm_rf sandbox
-  mkdir_p sandbox
-  cp_r Dir.glob("{#{files.join(',')}}"), sandbox
-  puts "\n\n"
-end
-
-begin
-  require 'jamie/rake_tasks'
-  Jamie::RakeTasks.new
-rescue LoadError
-  puts ">>>>> Jamie gem not loaded, omitting tasks" unless ENV['CI']
 end
