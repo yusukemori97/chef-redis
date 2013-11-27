@@ -117,7 +117,7 @@ class Chef
         file '/etc/sysconfig/redis' do
           owner 'root'
           group 'root'
-          mode '0755'
+          mode 00755
           content "REDIS_USER=#{ new_resource.user }\n"
         end
       end
@@ -134,7 +134,7 @@ class Chef
       def create_service_script
         set_dst_dir if node.redis.install_type == 'package'
         case new_resource.init_style
-          when "init"
+          when 'init'
             template "/etc/init.d/redis-#{ new_resource.name }" do
               source 'redis_init.erb'
               owner 'root'
