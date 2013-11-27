@@ -1,5 +1,5 @@
-module ChefRedis
-  class << self
+module Helpers
+  module Helpers
     def template_format(key, v)
       k = format_key(key)
       case v
