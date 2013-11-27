@@ -1,4 +1,5 @@
 require 'chef/provider'
+require 'redis'
 
 class Chef
   class Provider
