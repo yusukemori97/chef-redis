@@ -2,10 +2,10 @@
 .cache
 .kitchen
 .kitchen.local.yml
+.idea
 bin
 .jamie/
 .jamie.local.yml
 .vagrant
 tmp/
-Gemfile.lock
-Berksfile.lock
+*.lock
