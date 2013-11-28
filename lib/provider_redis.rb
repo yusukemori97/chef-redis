@@ -5,40 +5,14 @@ class Chef
   class Provider
     class Redis < Chef::Provider
 
-      def initialize(new_resource, run_context)
-        super
+      def initialize(*args)
+      super
       end
 
       def load_current_resource
-        # Because these attributes are loaded lazily
-        # we have to call each one explicitly
-        @new_resource.pidfile @new_resource.pidfile || "/var/run/redis/#{ @new_resource.name }.pid"
-        @new_resource.logfile @new_resource.logfile || "/var/log/redis/#{ @new_resource.name }.log"
-        @new_resource.dbfilename @new_resource.dbfilename || "#{ @new_resource.name }.rdb"
-        @new_resource.user @new_resource.user || node.redis.user
-        @new_resource.group @new_resource.group || node.redis.group
-
-        @new_resource.slaveof_ip @new_resource.slaveof_ip
-        @new_resource.slaveof_port @new_resource.slaveof_port || node.redis.config.port
-
-        if @new_resource.slaveof_ip || @new_resource.slaveof
-          @new_resource.slaveof @new_resource.slaveof || "#{ @new_resource.slaveof_ip } #{ @new_resource.slaveof_port }"
-        end
-
-        @new_resource.configure_no_appendfsync_on_rewrite
-        @new_resource.configure_slowlog
-        @new_resource.configure_list_max_ziplist
-        @new_resource.configure_maxmemory_samples
-        @new_resource.configure_set_max_intset_entries
-        @new_resource.configure_zset_max_ziplist_entries
-        @new_resource.configure_zset_max_ziplist_value
-        @new_resource.configure_hash_max_ziplist_entries
-        @new_resource.configure_hash_max_ziplist_value
-        @new_resource.conf_dir
-
-        @new_resource.state # Load attributes
-
-        @run_context.include_recipe 'runit' if @new_resource.init_style == 'runit'
+        #configuration
+        #running?
+        #slave?
       end
 
       def action_create
