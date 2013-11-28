@@ -1,2 +1,4 @@
-class AscertainRedis
+module ChefRedis
+  class AscertainResource
+  end
 end
