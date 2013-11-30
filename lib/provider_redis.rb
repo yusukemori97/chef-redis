@@ -12,7 +12,9 @@ class Chef
       def load_current_resource
         #configuration
         #running?
-        #slave?
+        #primary?
+        #secondary?
+        #cluster?
       end
 
       def action_create

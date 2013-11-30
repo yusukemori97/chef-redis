@@ -12,7 +12,9 @@ class Chef
       state_attrs(
           :configuration,
           :running?,
-          :slave?
+          :primary?,
+          :secondary?,
+          :cluster?
       )
       actions :create, :destroy
 
