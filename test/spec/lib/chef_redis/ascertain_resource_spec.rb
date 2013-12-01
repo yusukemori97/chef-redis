@@ -5,7 +5,7 @@ describe 'AscertainResource' do
   describe 'current redis configuration' do
 
     it 'should return a hash' do
-      true.should == false
+      skip
     end
 
   end

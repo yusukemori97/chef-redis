@@ -1,4 +1,4 @@
-require 'lib/chef_redis/version'
+require './lib/chef_redis/version'
 files_glob = Dir.glob('{lib,test}/**/*', File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
 all_files  = %w(Rakefile LICENSE README.md CONTRIBUTING.md) + files_glob
 
