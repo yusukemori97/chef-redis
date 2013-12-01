@@ -1,4 +1,6 @@
 require 'lib/chef_redis/version'
+files_glob = Dir.glob('{lib,test}/**/*', File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+all_files  = %w(Rakefile LICENSE README.md CONTRIBUTING.md) + files_glob
 
 LIB_NAME = 'chef_redis'
 
@@ -9,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.description = 'Chef Resource Providers to manage Redis'
   gem.authors       = ['Miah Johnson']
   gem.email         = 'miah@chia-pet.org'
-  gem.files       = 'lib/chef_redis.rb'
+  gem.files = all_files
   gem.homepage    = 'https://github.com/miah/chef_redis'
   gem.license       = 'Apache-2.0'
   gem.require_paths = ['lib', "lib/#{ LIB_NAME }", "lib/#{ LIB_NAME }/templates"]
