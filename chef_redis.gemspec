@@ -17,5 +17,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib', "lib/#{ LIB_NAME }", "lib/#{ LIB_NAME }/templates"]
   gem.add_runtime_dependency 'chef'
   gem.add_runtime_dependency 'redis', '>= 3.0.6'
-  gem.add_development_dependency 'rubysl', '~> 2.0' if RUBY_ENGINE == 'rbx'
+  if RUBY_ENGINE == 'rbx'
+    gem.add_development_dependency 'rubysl', '~> 2.0'
+    gem.add_development_dependency 'rubinius-coverage', '~> 2.0.3'
+  end
 end
