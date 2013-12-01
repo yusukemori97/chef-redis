@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.files       = 'lib/chef_redis.rb'
   gem.homepage    = 'https://github.com/miah/chef_redis'
   gem.license       = 'Apache-2.0'
-  gem.require_paths = ['lib', "lib/#{ LIB_NAME }", "lib/#{ LIB_NAME }/instance"]
+  gem.require_paths = ['lib', "lib/#{ LIB_NAME }", "lib/#{ LIB_NAME }/templates"]
   gem.add_runtime_dependency 'chef'
   gem.add_runtime_dependency 'redis', '>= 3.0.6'
 end

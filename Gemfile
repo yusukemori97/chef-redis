@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'redis', '>= 3.0.6'
+gemspec
 
 group :development do
   gem 'chef', '>= 11.4.4'

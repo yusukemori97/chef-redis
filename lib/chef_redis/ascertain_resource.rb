@@ -1,4 +1,5 @@
 require 'redis'
+require_relative 'helpers'
 
 module ChefRedis
   class AscertainResource
