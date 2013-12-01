@@ -1,5 +1,5 @@
 require_relative '../spec_helpers'
-require 'lib/chef_redis/ascertain_resource'
+require 'chef_redis/ascertain_resource'
 
 describe AscertainResource do
   describe 'current redis configuration' do
