@@ -1,5 +1,5 @@
 require './lib/chef_redis/version'
-files_glob = Dir.glob('{lib,test}/**/*', File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+files_glob = Dir.glob('{lib,test}/**/*').reject { |f| File.directory?(f) }
 all_files  = %w(Rakefile LICENSE README.md CONTRIBUTING.md) + files_glob
 
 LIB_NAME = 'chef_redis'
@@ -17,4 +17,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib', "lib/#{ LIB_NAME }", "lib/#{ LIB_NAME }/templates"]
   gem.add_runtime_dependency 'chef'
   gem.add_runtime_dependency 'redis', '>= 3.0.6'
+  gem.add_development_dependency 'rubysl', '~> 2.0' if RUBY_ENGINE = 'rbx'
 end
