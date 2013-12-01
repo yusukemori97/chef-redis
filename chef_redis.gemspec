@@ -1,4 +1,4 @@
-require './lib/chef_redis/version'
+require 'lib/chef_redis/version'
 
 LIB_NAME = 'chef_redis'
 
