@@ -17,7 +17,6 @@ attribute :monitor_port,            :kind_of => Fixnum, :default => 6379
 attribute :monitor,                 :kind_of => String
 attribute :down_after_milliseconds, :kind_of => Fixnum, :default => 60000
 attribute :failover_timeout,        :kind_of => Fixnum, :default => 900000
-attribute :can_failover,            :kind_of => [TrueClass, FalseClass], :default => true
 attribute :parallel_syncs,          :kind_of => Fixnum, :default => 1
 attribute :quorum,                  :kind_of => Fixnum, :default => 2
 attribute :port,                    :kind_of => Fixnum, :default => 26379
@@ -26,7 +25,6 @@ attribute :port,                    :kind_of => Fixnum, :default => 26379
 #sentinel monitor mymaster 127.0.0.1 6379 2
 #sentinel down-after-milliseconds mymaster 60000
 #sentinel failover-timeout mymaster 900000
-#sentinel can-failover mymaster yes
 #sentinel parallel-syncs mymaster 1
 
 def initialize(*args)
@@ -38,6 +36,5 @@ state_attrs(
   :monitor,
   :down_after_milliseconds,
   :failover_timeout,
-  :can_failover,
   :parallel_syncs
 )

@@ -80,7 +80,7 @@ state_attrs(
  :timeout,
  :save,
  :activerehashing,
- :slaveof,
+# :slaveof,
             
  :slowlog_log_slower_than,
  :slowlog_max_len,

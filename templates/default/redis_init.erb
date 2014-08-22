@@ -54,6 +54,11 @@ case "$1" in
                 <% end %>
                 echo "Starting Redis server..."
                 sudo -u <%= @user %> $EXEC $CONF
+		<% slvip = node.redis.config.slaveof_ip %>
+		<% slvport = node.redis.config.slaveof_port %>
+		<% if slvip != "" %>
+		$CLIEXEC -p $REDISPORT slaveof <%=slvip %> <%=slvport %>
+		<% end %>
         fi
         ;;
     stop)

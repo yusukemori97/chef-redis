@@ -1,8 +1,9 @@
 def load_current_resource
   new_resource.user         new_resource.user     || node.redis.user
   new_resource.group        new_resource.group    || node.redis.group
-  new_resource.log_file     new_resource.log_file || node.redis.config.logfile
-
+#  new_resource.log_file     new_resource.log_file || node.redis.config.logfile
+  new_resource.pidfile      "/var/run/redis/#{new_resource.name}.pid"
+  new_resource.log_file      "/var/log/redis/#{new_resource.name}.log"
   new_resource.state # Load attributes
 
   monitor_string = [new_resource.monitor_address, new_resource.monitor_port, new_resource.quorum].join(" ")

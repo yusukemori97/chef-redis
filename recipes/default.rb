@@ -16,3 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+case node.redis.server_type
+when "redis"
+	include_recipe "redis::server"
+when "sentinel"
+	include_recipe "redis::sentinel"
+end
