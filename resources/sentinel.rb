@@ -11,14 +11,21 @@ attribute :conf_dir,        :kind_of => String, :default => "/etc/redis"
 attribute :daemonize,       :kind_of => [TrueClass, FalseClass], :default => true
 
 # Interesting part
-attribute :master_name,             :kind_of => String, :required => true
-attribute :monitor_address,         :kind_of => String, :default => "127.0.0.1"
-attribute :monitor_port,            :kind_of => Fixnum, :default => 6379
+#attribute :master_name,             :kind_of => String, :required => true
+attribute :master_name,             :kind_of => String
+#attribute :monitor_address,         :kind_of => String, :default => "127.0.0.1"
+attribute :monitor_address,         :kind_of => String
+#attribute :monitor_port,            :kind_of => Fixnum, :default => 6379
+attribute :monitor_port,            :kind_of => Fixnum
 attribute :monitor,                 :kind_of => String
-attribute :down_after_milliseconds, :kind_of => Fixnum, :default => 60000
-attribute :failover_timeout,        :kind_of => Fixnum, :default => 900000
-attribute :parallel_syncs,          :kind_of => Fixnum, :default => 1
-attribute :quorum,                  :kind_of => Fixnum, :default => 2
+#attribute :down_after_milliseconds, :kind_of => Fixnum, :default => 60000
+#attribute :failover_timeout,        :kind_of => Fixnum, :default => 900000
+#attribute :parallel_syncs,          :kind_of => Fixnum, :default => 1
+#attribute :quorum,                  :kind_of => Fixnum, :default => 2
+attribute :down_after_milliseconds, :kind_of => Fixnum
+attribute :failover_timeout,        :kind_of => Fixnum
+attribute :parallel_syncs,          :kind_of => Fixnum
+attribute :quorum,                  :kind_of => Fixnum 
 attribute :port,                    :kind_of => Fixnum, :default => 26379
 
 # Example generated config

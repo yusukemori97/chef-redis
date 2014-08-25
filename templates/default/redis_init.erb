@@ -54,11 +54,24 @@ case "$1" in
                 <% end %>
                 echo "Starting Redis server..."
                 sudo -u <%= @user %> $EXEC $CONF
-		<% slvip = node.redis.config.slaveof_ip %>
-		<% slvport = node.redis.config.slaveof_port %>
-		<% if slvip != "" %>
-		$CLIEXEC -p $REDISPORT slaveof <%=slvip %> <%=slvport %>
+<% if node.redis.use_sentinel %>
+	<% slvof_ip = node.redis.config.slaveof_ip %>
+	<% slvof_port = node.redis.config.slaveof_port %>
+	<% snt_servers = node.redis.sentinel_servers.split(",") %>
+	<% if slvof_ip != nil && slvof_ip != "" %>
+		<% snt_ip = snt_servers[0].split(":")[0] %>
+		<% snt_port = snt_servers[0].split(":")[1] %>
+		MASTER_INFO=`$CLIEXEC -h <%= snt_ip %> -p <%= snt_port %> sentinel get-master-addr-by-name <%= "#{slvof_ip}_#{slvof_port}" %>`
+		$CLIEXEC -p $REDISPORT slaveof `echo $MASTER_INFO`
+	<% else %>
+		IP=`cat /etc/sysconfig/network-scripts/ifcfg-eth0 | grep IPADDR | awk -F "\"" '{print $2}'`
+		<% snt_servers.each do |server| %>
+		<% snt_ip = server.split(":")[0] %>
+		<% snt_port = server.split(":")[1] %>
+		$CLIEXEC -h <%= snt_ip %> -p <%= snt_port %> sentinel monitor "${IP}_<%= node.redis.config.port %>" $IP <%= node.redis.config.port %> 2
 		<% end %>
+	<% end %>
+<% end %>
         fi
         ;;
     stop)

@@ -6,8 +6,8 @@ def load_current_resource
   new_resource.log_file      "/var/log/redis/#{new_resource.name}.log"
   new_resource.state # Load attributes
 
-  monitor_string = [new_resource.monitor_address, new_resource.monitor_port, new_resource.quorum].join(" ")
-  new_resource.monitor     new_resource.monitor   || monitor_string
+#  monitor_string = [new_resource.monitor_address, new_resource.monitor_port, new_resource.quorum].join(" ")
+#  new_resource.monitor     new_resource.monitor   || monitor_string
 end
 
 action :create do
@@ -57,7 +57,7 @@ def create_service_script
 end
 
 def create_config
-  template "#{new_resource.conf_dir}/redis-sentinel-#{new_resource.name}.conf" do
+  template "#{new_resource.conf_dir}/sentinel-#{new_resource.name}.conf" do
     source 'sentinel.conf.erb'
     owner "root"
     group "root"
