@@ -46,6 +46,11 @@ def create_directories
     mode 00755
   end
 
+  directory ::File.dirname(new_resource.pidfile) do
+    owner new_resource.user
+    group new_resource.group
+    mode 00755
+  end
 end
 
 def create_service_script

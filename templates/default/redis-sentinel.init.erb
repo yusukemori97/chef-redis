@@ -31,6 +31,7 @@ case "$1" in
                 echo "$PIDFILE exists, process is already running or crashed"
         else
                 echo "Starting Redis sentinel..."
+		touch $PIDFILE
                 $EXEC $CONF --sentinel
         fi
         ;;
